@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Redirect;
 
 class ItemsController extends Controller
 {
+
+	/**
+     * 
+     * Index - if the user is logged in, allow them to proceed.
+     *  	   Otherwise, redirect to the log in page.
+     */
+
 	public function index()
 	{
 		if (Auth::check())
@@ -24,6 +31,11 @@ class ItemsController extends Controller
 		}
 	}
 
+	/**
+     * 
+     * Show - Show the contents of a particular item
+     * Parameter - Id # of specific item 	  
+     */
 
 	public function show($id)
 	{
@@ -32,10 +44,21 @@ class ItemsController extends Controller
 		return view('items.show', compact('item'));
 	}
 
+	/**
+     * 
+     * Create - Displays the Add Item page
+     */
+
 	public function create()
 	{		
 		return view('items.create');
 	}
+
+	/**
+     * 
+     * Store - Processes $_POSTs from the Add Item page
+     * Parameter - CreateItemRequest
+     */
 
 	public function store(Requests\CreateItemRequest $request)
 	{
